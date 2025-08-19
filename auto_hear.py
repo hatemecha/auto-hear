@@ -4,11 +4,10 @@ import threading
 import os
 import json
 from datetime import datetime
-import webbrowser
 
 # Importar el analizador de música (asumiendo que está en el mismo directorio)
 try:
-    from music_analyzer import MusicAnalyzer, analyze_audio_file
+    from music_analyzer import MusicAnalyzer
     ANALYZER_AVAILABLE = True
 except ImportError:
     ANALYZER_AVAILABLE = False
@@ -789,25 +788,25 @@ Método Key: {key_data['method']}"""
         
         # Verificar librerías principales
         try:
-            import librosa
+            import librosa  # noqa: F401
             libs_status.append("✅ librosa: Disponible")
         except ImportError:
             libs_status.append("❌ librosa: NO disponible")
-        
+
         try:
-            import essentia
+            import essentia  # noqa: F401
             libs_status.append("✅ essentia: Disponible")
         except ImportError:
             libs_status.append("❌ essentia: NO disponible")
-        
+
         try:
-            import madmom
+            import madmom  # noqa: F401
             libs_status.append("✅ madmom: Disponible (recomendado para BPM)")
         except ImportError:
             libs_status.append("⚠️ madmom: NO disponible (opcional pero recomendado)")
-        
+
         try:
-            import matplotlib
+            import matplotlib  # noqa: F401
             libs_status.append("✅ matplotlib: Disponible")
         except ImportError:
             libs_status.append("❌ matplotlib: NO disponible")
