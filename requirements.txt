@@ -1,9 +1,8 @@
-ttkthemes
-numpy
-matplotlib
-librosa
-scipy
-soundfile
-pydub
-ffmpeg-python
-# madmom y essentia se recomienda instalarlas con conda-forge en Windows
+numpy>=1.21
+matplotlib>=3.5
+librosa>=0.10
+scipy>=1.7
+soundfile>=0.12
+# Optional dependencies for advanced analysis (install via conda-forge)
+# madmom>=0.16
+# essentia>=2.1
