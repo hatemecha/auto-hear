@@ -86,21 +86,8 @@ class MusicAnalyzer:
                 "beats_detected": int(len(beats)),
                 "beats": beats.tolist(),
                 "all_estimates": [
-                    {"bmp": float(tempo), "confidence": 1.0, "method": "librosa"}
+                    {"bpm": float(tempo), "confidence": 1.0, "method": "librosa"}
                 ],
-            }
-
-            # ``auto_hear`` references ``bmp_analysis`` in a few places due to
-            # a typo; we therefore provide a mirror of the BPM information
-            # under that key to avoid ``KeyError`` exceptions.
-            bmp_analysis = {
-                "bmp": bpm_analysis["bpm"],
-                "confidence": bpm_analysis["confidence"],
-                "method": bpm_analysis["method"],
-                "tempo_stability": bpm_analysis["tempo_stability"],
-                "beats_detected": bpm_analysis["beats_detected"],
-                "beats": bpm_analysis["beats"],
-                "all_estimates": bpm_analysis["all_estimates"],
             }
 
             # ---- Key analysis -------------------------------------------------
@@ -179,7 +166,6 @@ class MusicAnalyzer:
                 "duration": duration,
                 "audio_info": audio_info,
                 "bpm_analysis": bpm_analysis,
-                "bmp_analysis": bmp_analysis,
                 "key_analysis": key_analysis,
                 "silence_analysis": silence_analysis,
             }
