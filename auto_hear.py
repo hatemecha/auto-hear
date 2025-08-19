@@ -761,12 +761,12 @@ Método Key: {key_data['method']}"""
     def reset_results(self):
         """Resetear todos los resultados mostrados"""
         self.analysis_results = None
-        
+
         # Resetear labels de resultados
-        self.bmp_result_label.config(text="---")
-        self.bmp_confidence_label.config(text="Confianza: ---%")
-        self.bmp_method_label.config(text="Método: ---")
-        self.bmp_stability_label.config(text="Estabilidad: ---")
+        self.bpm_result_label.config(text="---")
+        self.bpm_confidence_label.config(text="Confianza: ---%")
+        self.bpm_method_label.config(text="Método: ---")
+        self.bpm_stability_label.config(text="Estabilidad: ---")
         
         self.key_result_label.config(text="---")
         self.key_confidence_label.config(text="Confianza: ---%")
