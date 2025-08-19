@@ -377,6 +377,11 @@ class MusicAnalyzerGUI:
             self.current_file.set(filename)
             self.reset_results()
             self.status_label.config(text=f"Archivo seleccionado: {os.path.basename(filename)}")
+            # Iniciar el análisis automáticamente tras seleccionar el archivo
+            # para evitar que el usuario tenga que hacer un paso adicional.
+            # Esto soluciona el problema reportado donde no ocurría nada al
+            # elegir un audio.
+            self.start_analysis()
     
     def start_analysis(self):
         """Iniciar análisis en hilo separado"""
