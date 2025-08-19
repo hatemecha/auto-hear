@@ -615,20 +615,20 @@ Muestras: {self.analysis_results['audio_info']['samples']:,}"""
         details += f"BPM Final: {bpm_data['bpm']:.2f}\n"
         details += f"Confianza: {bpm_data['confidence']:.4f} ({bpm_data['confidence']*100:.1f}%)\n"
         details += f"Método principal: {bpm_data['method']}\n"
-        details += f"Beats detectados: {bmp_data['beats_detected']}\n"
-        
-        if 'tempo_stability' in bmp_data and bmp_data['tempo_stability'] is not None:
-            details += f"Estabilidad del tempo: {bmp_data['tempo_stability']:.4f}\n"
-            if bmp_data['tempo_stability'] < 0.2:
+        details += f"Beats detectados: {bpm_data['beats_detected']}\n"
+
+        if 'tempo_stability' in bpm_data and bpm_data['tempo_stability'] is not None:
+            details += f"Estabilidad del tempo: {bpm_data['tempo_stability']:.4f}\n"
+            if bpm_data['tempo_stability'] < 0.2:
                 details += "  -> Tempo muy estable\n"
-            elif bmp_data['tempo_stability'] < 0.4:
+            elif bpm_data['tempo_stability'] < 0.4:
                 details += "  -> Tempo moderadamente variable\n"
             else:
                 details += "  -> Tempo muy variable (cambios frecuentes)\n"
-        
+
         details += "\nTodas las estimaciones BPM:\n"
-        for i, est in enumerate(bmp_data.get('all_estimates', []), 1):
-            details += f"  {i}. {est['bmp']:.2f} BPM (confianza: {est['confidence']:.3f}, método: {est['method']})\n"
+        for i, est in enumerate(bpm_data.get('all_estimates', []), 1):
+            details += f"  {i}. {est['bpm']:.2f} BPM (confianza: {est['confidence']:.3f}, método: {est['method']})\n"
         
         # Análisis de tonalidad detallado
         key_data = self.analysis_results['key_analysis']
@@ -713,7 +713,7 @@ Muestras: {self.analysis_results['audio_info']['samples']:,}"""
                         f.write(f"Duración: {self.analysis_results['duration']:.2f}s\n\n")
                         
                         f.write("RESULTADOS PRINCIPALES:\n")
-                        f.write(f"BPM: {self.analysis_results['bmp_analysis']['bmp']:.1f}\n")
+                        f.write(f"BPM: {self.analysis_results['bpm_analysis']['bpm']:.1f}\n")
                         f.write(f"Tonalidad: {self.analysis_results['key_analysis']['key']} {self.analysis_results['key_analysis']['scale']}\n\n")
                         
                         f.write("DETALLES COMPLETOS:\n")
@@ -731,16 +731,16 @@ Muestras: {self.analysis_results['audio_info']['samples']:,}"""
             return
         
         try:
-            bmp_data = self.analysis_results['bmp_analysis']
+            bpm_data = self.analysis_results['bpm_analysis']
             key_data = self.analysis_results['key_analysis']
-            
+
             clipboard_text = f"""Análisis Musical - {os.path.basename(self.analysis_results['file_path'])}
 
-BPM: {bmp_data['bmp']:.1f} (confianza: {bmp_data['confidence']*100:.1f}%)
+BPM: {bpm_data['bpm']:.1f} (confianza: {bpm_data['confidence']*100:.1f}%)
 Tonalidad: {key_data['key']} {key_data['scale']} (confianza: {key_data['confidence']*100:.1f}%)
 Duración: {self.analysis_results['duration']:.2f}s
 
-Método BPM: {bmp_data['method']}
+Método BPM: {bpm_data['method']}
 Método Key: {key_data['method']}"""
             
             self.root.clipboard_clear()
